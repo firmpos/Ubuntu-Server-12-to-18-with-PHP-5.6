@@ -125,7 +125,7 @@ sudo ip route add 0/0 via YOUR_GATEWAY
 References:
 Subnet cheat sheet: https://www.aelius.com/njh/subnet_sheet.html
 
-##Setting up Netplan
+## Setting up Netplan
 You should be able to SSH into the server again. You need to setup Netplan to handle eth0 going forward. We are using static addresses for our server. If you are using dynamic IPs, you will have to do the research for what Netplan requires. NOTE: the indentations are deliberate and must be correct of Netplan will fail.
 
 Create a new yaml file to handle this. (NOTE: if you are using Digital Ocean and this is an image seed for future servers, stop here. Do not create the Netplan yaml as Digital Ocean handles this upon creation.
@@ -149,7 +149,7 @@ network:
           addresses: [8.8.8.8, 8.8.4.4]
 ```
 
-##Updating SSLProtocol & SSLCipherSuite
+## Updating SSLProtocol & SSLCipherSuite
 The first thing we need to do is find all the files that contain reference to SSLProtocol.
 
 ```
