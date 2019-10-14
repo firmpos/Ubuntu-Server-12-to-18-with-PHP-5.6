@@ -1,4 +1,4 @@
-#Upgrading Ubuntu Server from 12.04 LTS to 18.04 LTS with PHP 5.6 support instead of PHP 7
+# Upgrading Ubuntu Server from 12.04 LTS to 18.04 LTS with PHP 5.6 support instead of PHP 7
 
 The purpose of this document is to provide a path for upgrading an Ubuntu Server running version 12.04 LTS to 18.04 LTS while retaining PHP 5.6 as the primary CLI and Apache versions.
 
@@ -8,11 +8,14 @@ This document will provide a basic upgrade path and then update the SSLProtocol 
 
 Be sure to make backup images of your server before making any changes. Also, the standard disclaimer… this upgrade path has taken a good deal of time and research and works well in our testing environment. Your environment might require additional steps. Do the research and know why you are making the changes outlined in this doc. This document is strictly being offered AS IS and if you choose to follow it, you take on and accept all risk. 
 
-##Upgrading to Ubuntu 14.04
-**sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install update-manager-core
-sudo do-release-upgrade**
+## Upgrading to Ubuntu 14.04
+
+``
+sudo apt-get update  
+sudo apt-get upgrade    
+sudo apt-get install update-manager-core    
+sudo do-release-upgrade    
+``
 
 Once the upgrade completes, Apache will fail to start. You will see the error:  AH00526: Syntax error on line 49 of /etc/apache2/mods-enabled/ssl.conf   
 
@@ -29,7 +32,7 @@ Try to start Apache
 References
 https://itsfoss.com/ubuntu-12-04-end-of-life/
 
-##Upgrading to Ubuntu 16LTS
+## Upgrading to Ubuntu 16LTS
 **sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
@@ -41,13 +44,13 @@ sudo do-release-upgrade**
 References:
 https://www.digitalocean.com/community/tutorials/how-to-upgrade-to-ubuntu-16-04-lts
 
-##Installing PHP 5 on Ubuntu 16
+## Installing PHP 5 on Ubuntu 16
 **sudo apt-get install -y software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
 sudo apt-get install -y php5.6**
 
-##Setting PHP 5.6 as the default version
+## Setting PHP 5.6 as the default version
 This sets PHP 5.6 as default while restarting Apache to recognize the change:
 
 **sudo a2dismod php7.0 
@@ -58,12 +61,12 @@ To maintain symbolic links or the /etc/alternatives path through the update-alte
 
 **sudo update-alternatives --config php**
 
-###PHP Extensions
+### PHP Extensions
 Adding PHP extensions your application requires (this is an example… add only what you need)
 
 **sudo apt-get install -y php5.6 php5.6-bcmath php5.6-mcrypt php5.6-json php5.6-mbstring php5.6-curl php5.6-cli php5.6-mysql php5.6-gd php5.6-intl php5.6-xsl php5.6-zip libapache2-mod-php5.6**
 
-###Verify the version
+### Verify the version
 You can now verify that PHP 5.6 is the default by running:
 
 **php -v**
@@ -71,7 +74,7 @@ You can now verify that PHP 5.6 is the default by running:
 References:
 https://www.liquidweb.com/kb/install-multiple-php-versions-on-ubuntu-16-04/
 
-##Updating to Ubuntu 18.04 LTS
+## Updating to Ubuntu 18.04 LTS
 Be sure you are doing this portion of the upgrade from the console as eth0 will fail upon completion due to Netplan. If you are using SSH, you will NOT be able to reconnect.
 
 **NOTE:** Before starting this update, be sure to open /etc/network/interfaces and copy the contents of the file. You will need this to setup Netplan.
@@ -84,7 +87,7 @@ sudo do-release-upgrade**
 References:
 https://www.digitalocean.com/community/tutorials/how-to-upgrade-to-ubuntu-18-04
 
-##Netplan and how to get eth0 working again
+## Netplan and how to get eth0 working again
 You will need to start eth0 temporarily to SSH into the server. The placeholder YOUR_IP is the server IP address, XX is the subnet mask and YOUR_GATEWAY is the gateway.
 
 **Note:** the subnet mask might not be 24. I have included a subnet cheat sheet below.
