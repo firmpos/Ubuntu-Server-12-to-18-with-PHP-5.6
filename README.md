@@ -182,9 +182,13 @@ sudo service apache2 start
 ```
 
 References:
+
 https://www.digicert.com/ssl-support/apache-disabling-ssl-v3.htm
+
 https://support.plesk.com/hc/en-us/articles/115004991834-How-to-check-what-SSL-TLS-versions-are-available-for-a-website-
+
 https://serverfault.com/questions/848177/how-can-i-disable-tls-1-0-and-1-1-in-apache
+
 https://httpd.apache.org/docs/trunk/ssl/ssl_howto.html
 
 ## Testing your server
