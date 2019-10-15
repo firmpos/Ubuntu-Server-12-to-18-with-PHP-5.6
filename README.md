@@ -196,3 +196,33 @@ There are plenty of free resources to test SSL/TLS for the server. Here is the o
  
 https://www.ssllabs.com/ssltest/analyze.html
 
+## MYSQL 5.7 Gotcha
+After upgrade, MYSQL 5.7 will implement a few changes and you might have some queries that stop working in your application. At this point, you can choose to refactor those queries to MYSQL 5.7 standards or choose to force MYSQL to act as it did in version 5.6
+
+We open the configuration file /etc/mysql/my.cnf, there are two included directories:
+
+```
+!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/mysql.conf.d/
+```
+
+In this case, we edited the mysqld.cnf:
+
+```
+nano /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+
+Place this line into your file under the [mysqld] section:
+
+```
+sql_mode = STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+```
+
+Restart the MYSQL service or reboot the server.
+
+```
+sudo service mysql restart
+```
+
+References:
+https://www.sitepoint.com/quick-tip-how-to-permanently-change-sql-mode-in-mysql/
