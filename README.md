@@ -149,6 +149,12 @@ network:
           addresses: [8.8.8.8, 8.8.4.4]
 ```
 
+Now apply the changes:
+
+```
+sudo netplan apply
+```
+
 ## Updating SSLProtocol & SSLCipherSuite
 The first thing we need to do is find all the files that contain reference to SSLProtocol.
 
