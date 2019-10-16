@@ -155,6 +155,8 @@ Now apply the changes:
 sudo netplan apply
 ```
 
+** NOTE ** Make sure you have direct access to the server console in case you make a mistake and the network doesn't come back up on the next boot. 
+
 ## Updating SSLProtocol & SSLCipherSuite
 The first thing we need to do is find all the files that contain reference to SSLProtocol.
 
