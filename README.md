@@ -224,6 +224,7 @@ Place this line into your file under the [mysqld] section:
 
 ```
 sql_mode = STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+optimizer_switch = index_merge=on,index_merge_union=on,index_merge_sort_union=on,index_merge_intersection=on,engine_condition_pushdown=on,index_condition_pushdown=on,mrr=on,mrr_cost_based=on,block_nested_loop=on,batched_key_access=off,materialization=on,semijoin=on,loosescan=on,firstmatch=on,duplicateweedout=off,subquery_materialization_cost_based=on,use_index_extensions=on,condition_fanout_filter=off,derived_merge=off
 ```
 
 Restart the MYSQL service or reboot the server.
